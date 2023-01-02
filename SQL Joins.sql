@@ -59,3 +59,11 @@ This query should return:
 -  the employee's first and last name
 -  the name of each product
 -  and how many of that product they sold */
+
+SELECT e.employeeID, e.firstname, e.lastname, p.NAME,
+SUM(s.quantity) AS "Total Sold"
+FROM sales AS s
+INNER JOIN employees AS e ON e.employeeID = s.EmployeeID
+INNER JOIN products AS p ON p.ProductID = s.ProductID
+GROUP BY e.EmployeeID, p.ProductID
+ORDER BY e.FirstName;
